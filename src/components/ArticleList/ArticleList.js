@@ -50,9 +50,11 @@ const ArticleList = () => {
 				<Alert message={articlesError} type="error" />
 			) : (
 				<>
-					{articles.map((article) => (
-						<ArticleCard key={article.slug} article={article} showBody={false} />
-					))}
+					{Array.isArray(articles) ? (
+						articles.map((article) => <ArticleCard key={article.slug} article={article} showBody={false} />)
+					) : (
+						<Alert message="No articles found" type="warning" />
+					)}
 					<Pagination
 						style={{ textAlign: 'center' }}
 						current={currentPage}
